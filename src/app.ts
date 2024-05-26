@@ -1,10 +1,13 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
+import express, { Application, NextFunction, Request, Response } from "express";
+import cors from "cors";
 
 const typeDefs = `
   type Book {
-    title: String
-    author: String
+    id: ID!
+    title: String!
+    author: String!
   }
 
   type Query {
@@ -35,11 +38,31 @@ const server = new ApolloServer({
 });
 
 const main = async () => {
-    const { url } = await startStandaloneServer(server, {
+  const App: Application = express();
+  const { url } = await startStandaloneServer(server, {
   listen: { port: 4000 },
 });
+App.use(cors());
 
-console.log(`🚀  Server ready at: ${url}`);
+//parser
+App.use(express.json());
+App.use(express.urlencoded({ extended: true }));
+App.listen( () => {
+  console.log(`🚀  Server ready at: ${url}`)
+});
+App.use((req: Request, res: Response, next: NextFunction) => {
+  res.status(404).json({
+    success: false,
+    message: "Not Found",
+    errorMessages: [
+      {
+        path: req.originalUrl,
+        message: `🚦 Requested ${req.originalUrl} this Route Not Found 💥`,
+      },
+    ],
+  });
+  next();
+});
 }
 
 main();
