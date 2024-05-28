@@ -1,7 +1,9 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
-import express, { Application, NextFunction, Request, Response } from "express";
+import express, { Application } from "express";
 import cors from "cors";
+import bodyParser from "body-parser";
+import { expressMiddleware } from "@apollo/server/express4";
 
 const typeDefs = `
   type Book {
@@ -45,24 +47,17 @@ const main = async () => {
 App.use(cors());
 
 //parser
-App.use(express.json());
-App.use(express.urlencoded({ extended: true }));
+ App.use(bodyParser.json());
+ App.use(bodyParser.urlencoded({ extended: true }));
+ App.use( expressMiddleware(server, {
+      context: async ({ req }) => ({ token: req.headers.token }),
+    })
+  );
 App.listen( () => {
   console.log(`🚀  Server ready at: ${url}`)
 });
-App.use((req: Request, res: Response, next: NextFunction) => {
-  res.status(404).json({
-    success: false,
-    message: "Not Found",
-    errorMessages: [
-      {
-        path: req.originalUrl,
-        message: `🚦 Requested ${req.originalUrl} this Route Not Found 💥`,
-      },
-    ],
-  });
-  next();
-});
 }
 
-main();
+main().catch(error => {
+  console.log('Error starting the server:', error);
+});
