@@ -1,9 +1,6 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
-import express, { Application } from "express";
-import cors from "cors";
-import bodyParser from "body-parser";
-import { expressMiddleware } from "@apollo/server/express4";
+import config from "./config";
 
 const typeDefs = `
   type Book {
@@ -40,24 +37,12 @@ const server = new ApolloServer({
 });
 
 const main = async () => {
-  const App: Application = express();
   const { url } = await startStandaloneServer(server, {
-  listen: { port: 4000 },
-});
-App.use(cors());
-
-//parser
- App.use(bodyParser.json());
- App.use(bodyParser.urlencoded({ extended: true }));
- App.use( expressMiddleware(server, {
-      context: async ({ req }) => ({ token: req.headers.token }),
-    })
-  );
-App.listen( () => {
-  console.log(`🚀  Server ready at: ${url}`)
-});
+    listen: { port: Number(`${config.port}`) },
+  });
+  console.log(`🚀  ${config.app_name} App Server is Running on ${url}`)
 }
 
 main().catch(error => {
-  console.log('Error starting the server:', error);
+  console.log("Something went wrong: ", error);
 });

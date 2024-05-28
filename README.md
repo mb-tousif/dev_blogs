@@ -1,21 +1,48 @@
-# A Project with GraphsQl and express.js
+# `Dev Recipes Blog` Project Backend
+<!-- Project description -->
+This is a project to create a blog for developers to share their Blogs, Articles, Notes and News. This project is the backend part of the project.
+
+---
 
 ## Getting Started
-<!-- Project setup steps -->
+<!-- Instructions to get a copy of the project up and running on your local machine for development and testing purposes -->
+To get a copy of the project up and running on your local machine for development and testing purposes, you need to follow the following steps.
+
 ### Prerequisites
-<!-- What things you need to install the software and how to install them -->
+<!-- List of softwares and libraries required to run the project -->
+- Node.js
+
 ### Installing
-<!-- A step by step series of examples that tell you how to get a development env running -->
-### Running the tests
-<!-- Explain how to run the automated tests for this system -->
-### Deployment
-<!-- Add additional notes about how to deploy this on a live system -->
-## Built With
-<!-- List of tools used to build the project -->
-## Contributing
-<!-- Explain how other users and developers can contribute to make your code better -->
-## Versioning
-<!-- Explain how you can use versioning to keep track of your code history -->
+<!-- Instructions to install the project and its dependencies -->
+1. Clone the repository
+```bash
+git clone 
+```
+2. Install the dependencies
+```bash
+  npm install
+```
+3. Create a `.env` file in the root directory of the project and add the following environment variables
+```env
+
+  PORT=3000
+  DATABASE_URL=postgres://username:password@localhost:5432/dbname
+  APP_NAME=`Dev Recipes Blog`
+  SALT_ROUNDS=Numeric Value
+  JWT_SECRET=Secret Key
+  JWT_EXPIRES_IN=Time
+
+```
+4. Run the project
+```bash
+  npm start
+```
+
+---
+
 ## Authors
 <!-- List of authors -->
+`Dev Tousif`
 ## License
+<!-- Project License -->
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
