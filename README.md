@@ -35,8 +35,18 @@ git clone
 ```
 4. Run the project
 ```bash
-  npm start
+  npm run dev
 ```
+
+---
+
+## 🌟 Technologies
+<!-- List of technologies used in the project -->
+- [x] Node.js 🔄
+- [x] TypeScript 📝
+- [x] GraphQL 🚀
+- [x] PostgreSQL 🚀
+- [x] Prisma ⏳
 
 ---
 
