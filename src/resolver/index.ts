@@ -1,18 +1,7 @@
-const books = [
-  {
-    title: "The Awakening",
-    author: "Kate Chopin",
-  },
-  {
-    title: "City of Glass",
-    author: "Paul Auster",
-  },
-];
+import { mergeResolvers } from "@graphql-tools/merge";
+import userResolver from "./userResolver";
 
-const resolvers = {
-  Query: {
-    books: () => books,
-  },
-};
 
-export default resolvers;
+const mergedResolvers = mergeResolvers([userResolver]);
+
+export default mergedResolvers;

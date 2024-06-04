@@ -50,6 +50,14 @@ git clone
 
 ---
 
+### Entity Relationship Diagram
+
+<p>
+<img src="./ERD.svg" align="center" width="100%" height="100%" style="border-radius: 30px;">
+</p>
+
+---
+
 ## Authors
 <!-- List of authors -->
 `Dev Tousif`

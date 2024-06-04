@@ -1,13 +1,8 @@
-const typeDefs = `#graphql
-  type Book {
-    id: ID!
-    title: String!
-    author: String!
-  }
+import { mergeTypeDefs } from "@graphql-tools/merge";
+import userTypeDef from "./userSchema";
 
-  type Query {
-    books: [Book]
-  }
-`;
+// typeDefs
 
-export default typeDefs;
+const mergedTypeDefs = mergeTypeDefs([userTypeDef]);
+
+export default mergedTypeDefs;
