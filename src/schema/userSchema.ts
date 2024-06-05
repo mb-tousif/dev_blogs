@@ -1,6 +1,10 @@
+
 const userTypeDef = `#graphql
+  type Query {
+    hello: String
+  }
   type User {
-    id: ID!
+    id: ID
     email: String!
     password: String!
     role: String!
@@ -25,14 +29,14 @@ const userTypeDef = `#graphql
   }
 
   type AuthPayload {
-        userError: String
-        token: String
-    }
+    userError: String
+    token: String
+  }
 
-    # type PostPayload {
-    #     userError: String
-    #     post: Blog
-    # }
+  # type PostPayload {
+  #     userError: String
+  #     post: Blog
+  # }
 `;
 
 export default userTypeDef;
