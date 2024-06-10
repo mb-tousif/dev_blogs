@@ -1,7 +1,7 @@
 
 const userTypeDef = `#graphql
   type Query {
-    hello: String
+    getAllUser: [User]
   }
   type User {
     id: ID
